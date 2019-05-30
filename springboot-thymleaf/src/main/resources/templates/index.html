@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>测试thymleaf系列写法</h1>
+<!-- ${}表达式里面可以写el表达式 -->
+<span th:text="${test}"></span>
+<span th:text="${user.name}"></span>
+<!-- 星号表达式*{} -->
+<h1>星号表达式测试---用户信息</h1>
+<div th:object="${user}">
+<span th:text="*{name}"></span>
+<span th:text="*{age}"></span>
+<span th:text="*{mobile}"></span>
+</div>
+<h1>foreach表达式----用户地址</h1>
+<table>
+   <tr>
+       <td>用户省份</td>
+       <td>用户城市</td>
+       <td>用户街道地址</td>
+   </tr>
+   <tr th:each="item:${user.address}">
+       <td th:text="${item.province}"></td>
+       <td th:text="${item.city}"></td>
+       <td th:text="${item.street}"></td>
+   </tr>
+ </table>
+ <h1>条件判断</h1>
+ <h3>th:if 和 th:unless 单条件判断</h3>
+ <div th:if="${2>1}">aaaaaaaaaaa</div>
+ <div th:unless="${2>1}">bbbbbb</div>
+ <h3>th:switch (多条件判断) </h3>
+ 
+<div th:switch="${user.age}">
+  <span th:case="18">青年</span>
+  <span th:case="30">壮年</span>
+  <span th:case="60">老年</span>
+</div>
+<h1>表达式测试</h1>
+<h3>文本操作</h3>
+<div th:text="'我的名字是'+${user.name}+'哈哈哈哈'"></div>
+<div th:text="|我的名字是${user.name}哈哈哈哈!|"></div>
+<h3>算术运算符测试</h3>
+<!--直接运算符-->
+<div th:text="${1+2}"></div>
+<!--在context中获取数据在进行运算-->
+<div th:text="${user.age + 50}"></div>
+<h3>比较运算符</h3>
+<div th:text="${2>1}"></div>
+<div th:text="${user.age gt 18}"></div>
+<h3>逻辑运算符测试</h3>
+<!--输出true-->
+<div th:text="${2>1 and 3>2}"></div>
+<!--输出true-->
+<div th:text="${2>1 or 2>3}"></div>
+<h3>三目运算符</h3>
+<!--输出第二个值大-->
+<div th:text="${2>3?'第一个值大':'第二个值大'}"></div>
+<h1>内嵌变量测试</h1>
+<!-- date操作 -->
+<div th:text="${#calendars.format(date,'yyyy-MM-dd HH:mm:ss')}">2018-2-3</div>
+<!-- 截取字符串 -->
+截取字符串<div th:text="${#strings.substring(user.name,1,2)}"></div>
+<!-- 获取list长度 -->
+获取list长度 <div th:text="${#lists.size(user.address)}"></div>
+<!-- string操作 -->
+string操作:<div th:text="${#strings.isEmpty(user.name)}"></div>
+<!-- map操作 -->
+map操作：<div th:text="${#maps.size(testMap)}"></div>
+</body>
+</html>
