@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import java.sql.Date;
 import java.util.List;
 
 public class User {
@@ -8,6 +9,8 @@ public class User {
 	private Integer age;
 	private String mobile;
 	private String email;
+	private Sex sex;
+	private Date birthday;
 	private List<Address> address;
 	
 	public User() {
@@ -49,6 +52,18 @@ public class User {
 	}
 	public void setAddress(List<Address> address) {
 		this.address = address;
+	}
+	public Sex getSex() {
+		return sex;
+	}
+	public void setSex(Sex sex) {
+		this.sex = sex;
+	}
+	public Date getBirthday() {
+		return birthday;
+	}
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
 	}
 	
 	
